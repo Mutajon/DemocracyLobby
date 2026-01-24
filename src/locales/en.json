@@ -1,0 +1,79 @@
+{
+    "sidebar": {
+        "title": "aMAZE’n",
+        "subtitle": "Democracy Lab",
+        "menu": {
+            "about": "About Project",
+            "game": "Research Simulation",
+            "source": "Source Data",
+            "contact": "Contact Team",
+            "language": "Language"
+        },
+        "footer": {
+            "university": "University Research",
+            "copyright": "© {{year}} Democracy Game"
+        }
+    },
+    "panels": {
+        "about": {
+            "title": "About the Research",
+            "p1_strong": "aMAZE'n Politics",
+            "p1": "is an interactive research platform designed to model and analyze political decision-making processes.",
+            "p2": "This study aims to understand how individuals navigate complex policy landscapes when presented with conflicting incentives. The data collected will contribute to ongoing research in the Department of Political Science.",
+            "note_strong": "Note to Participants:",
+            "note": "Your participation helps advance our understanding of democratic systems. All data is anonymized and used solely for academic purposes."
+        },
+        "game": {
+            "intro": {
+                "badge": "Interactive Simulation",
+                "title": "Participant Instruction",
+                "description": "You are about to participate in a simulation driven by an automated agent. Your decisions within this environment will be recorded for analysis. Please ensure you have read the participant information sheet before proceeding.",
+                "duration": "Estimated duration: 15 minutes",
+                "button": "Begin Simulation"
+            },
+            "terms": {
+                "title": "Informed Consent",
+                "statement": "By clicking \"Enter Environment\", you acknowledge that:",
+                "list": {
+                    "l1": "You have voluntarily agreed to participate in this study.",
+                    "l2": "You understand that you may withdraw at any time without penalty.",
+                    "l3": "Data will be collected on decision times and choices made.",
+                    "l4": "No personally identifiable information will be stored publicly."
+                },
+                "agree_button": "I Agree • Enter Environment",
+                "cancel_button": "Cancel and return"
+            }
+        },
+        "source": {
+            "title": "Research Data & Source",
+            "description": "Access the codebase and methodology used in this study.",
+            "methodology": {
+                "title": "Methodology",
+                "description": "Review the algorithmic framework and decision-making models implemented in the simulation.",
+                "license": "MIT License"
+            },
+            "academic": {
+                "title": "Academic Use",
+                "description": "This software is provided for educational and non-commercial research purposes. Please cite the original authors in any derivative works."
+            },
+            "download_zip": "Download Source Code (ZIP)",
+            "view_repo": "View Repository on GitHub"
+        },
+        "contact": {
+            "title": "Contact Findings Team",
+            "dept": {
+                "name": "Department of Political Science",
+                "faculty": "Faculty of Social Sciences",
+                "address": "University Campus, Building 4"
+            },
+            "email": {
+                "title": "Research Inquiries",
+                "address": "research@amazenpolitics.edu"
+            },
+            "phone": {
+                "title": "Lab Office",
+                "number": "+1 (555) 123-4567 (Ext. 890)"
+            }
+        }
+    }
+}
