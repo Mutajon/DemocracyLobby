@@ -39,20 +39,20 @@ export function Sidebar({ activePanel, onPanelChange }: SidebarProps) {
     ];
 
     return (
-        <div className="flex flex-col h-full bg-slate-50/50">
-            <div className="p-8 border-b border-slate-100 bg-white flex justify-between items-start gap-4">
-                <div>
-                    <h1 className="text-2xl font-serif font-bold text-slate-900 tracking-tight leading-none">
-                        {t("sidebar.title")}
-                        <span className="block text-sm font-sans font-medium text-slate-500 mt-1 uppercase tracking-wider">
-                            {t("sidebar.subtitle")}
-                        </span>
-                    </h1>
-                </div>
+        <div className="flex flex-col h-full">
+            <div className="p-10 bg-transparent flex flex-col items-center text-center gap-6">
                 <LanguageSelector />
+                <div>
+                    <h1 className="text-3xl font-serif font-black text-secondary tracking-tight leading-none drop-shadow-lg">
+                        {t("sidebar.title")}
+                    </h1>
+                    <span className="block text-xs font-sans font-bold text-foreground/60 mt-3 uppercase tracking-[0.2em]">
+                        {t("sidebar.subtitle")}
+                    </span>
+                </div>
             </div>
 
-            <nav className="flex flex-col gap-1 p-4 flex-1 overflow-y-auto">
+            <nav className="flex flex-col gap-3 p-6 flex-1 overflow-y-auto">
                 {menuItems.map((item) => {
                     const isActive = activePanel === item.id;
                     return (
@@ -60,34 +60,36 @@ export function Sidebar({ activePanel, onPanelChange }: SidebarProps) {
                             key={item.id}
                             onClick={() => onPanelChange(item.id)}
                             className={cn(
-                                "group flex items-center gap-3 p-3 rounded-lg transition-all duration-200 text-sm font-medium w-full text-start",
+                                "group flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 text-sm font-bold w-full text-start",
                                 isActive
-                                    ? "bg-white text-blue-900 shadow-sm border border-slate-200"
-                                    : "text-slate-600 hover:bg-white/60 hover:text-slate-900"
+                                    ? "bg-white/10 text-secondary border border-white/20 shadow-[0_0_20px_rgba(251,191,36,0.1)] translate-x-1"
+                                    : "text-foreground/70 hover:bg-white/5 hover:text-foreground"
                             )}
                         >
                             <div className={cn(
-                                "p-2 rounded-md transition-colors flex-shrink-0",
-                                isActive ? "bg-blue-50 text-blue-700" : "bg-transparent text-slate-400 group-hover:text-slate-600"
+                                "p-2.5 rounded-xl transition-all duration-300 flex-shrink-0",
+                                isActive
+                                    ? "bg-secondary/20 text-secondary scale-110 rotate-3"
+                                    : "bg-white/5 text-foreground/40 group-hover:text-secondary/70 group-hover:scale-105"
                             )}>
-                                <item.icon className="w-5 h-5" />
+                                <item.icon className="w-5 h-5 transition-transform duration-300" />
                             </div>
-                            <span>{item.label}</span>
+                            <span className="tracking-wide">{item.label}</span>
 
                             {/* Active Indicator Line */}
                             {isActive && (
-                                <div className="ml-auto w-1 h-1.5 rounded-full bg-blue-600" />
+                                <div className="ml-auto w-2 h-2 rounded-full bg-secondary shadow-[0_0_10px_#fbbf24]" />
                             )}
                         </button>
                     )
                 })}
             </nav>
 
-            <div className="p-6 border-t border-slate-100 bg-white text-center">
-                <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">
+            <div className="p-8 bg-black/20 text-center backdrop-blur-md border-t border-white/5">
+                <p className="text-[10px] text-foreground/40 uppercase tracking-[0.25em] font-bold">
                     {t("sidebar.footer.university")}
                 </p>
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-[11px] text-foreground/30 mt-2 font-medium">
                     {t("sidebar.footer.copyright").replace("{{year}}", new Date().getFullYear().toString())}
                 </p>
             </div>
