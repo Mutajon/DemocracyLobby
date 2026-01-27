@@ -46,7 +46,7 @@ export function LanguageSelector() {
                 )}
                 title={t("sidebar.menu.language")}
             >
-                <div className="w-4 h-4 flex items-center justify-center text-secondary">
+                <div className="w-4 h-4 flex items-center justify-center text-primary shadow-[0_0_10px_rgba(147,51,234,0.4)]">
                     <Globe className="w-4 h-4" />
                 </div>
                 <span className="text-xs font-bold w-5 text-center">{currentLabel}</span>
@@ -62,7 +62,7 @@ export function LanguageSelector() {
                         onClick={() => handleSelect("en")}
                         className={cn(
                             "w-full px-4 py-3 text-sm text-left flex items-center justify-between hover:bg-white/5 transition-all duration-200",
-                            language === "en" ? "text-secondary font-bold" : "text-foreground/70"
+                            language === "en" ? "text-primary font-bold" : "text-foreground/70"
                         )}
                     >
                         <span>English</span>
@@ -72,7 +72,7 @@ export function LanguageSelector() {
                         onClick={() => handleSelect("he")}
                         className={cn(
                             "w-full px-4 py-3 text-sm text-right flex flex-row-reverse items-center justify-between hover:bg-white/5 transition-all duration-200",
-                            language === "he" ? "text-secondary font-bold" : "text-foreground/70"
+                            language === "he" ? "text-primary font-bold" : "text-foreground/70"
                         )}
                         dir="rtl"
                     >

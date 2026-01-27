@@ -12,9 +12,9 @@ export function SourceCodePanel() {
                 <p className="text-foreground/60 mb-10 text-lg font-medium tracking-tight leading-relaxed">{t("panels.source.description")}</p>
 
                 <div className="grid md:grid-cols-2 gap-8 mb-10">
-                    <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl group hover:bg-white/10 transition-all duration-300">
-                        <h3 className="text-xl font-black text-foreground mb-4 flex items-center gap-3">
-                            <div className="p-2 bg-primary/20 text-primary-foreground rounded-lg">
+                    <div className="bg-primary/20 backdrop-blur-xl p-8 rounded-3xl border border-primary/20 shadow-2xl group hover:bg-primary/30 transition-all duration-300">
+                        <h3 className="text-xl font-black text-secondary mb-4 flex items-center gap-3">
+                            <div className="p-2 bg-secondary/20 text-secondary rounded-lg shadow-[0_0_15px_rgba(251,191,36,0.3)]">
                                 <FileText className="w-5 h-5" />
                             </div>
                             {t("panels.source.methodology.title")}
@@ -22,19 +22,19 @@ export function SourceCodePanel() {
                         <p className="text-base text-foreground/70 mb-6 leading-relaxed">
                             {t("panels.source.methodology.description")}
                         </p>
-                        <div className="text-xs font-mono text-secondary/60 bg-black/30 p-4 rounded-xl border border-white/5 tracking-wider uppercase">
+                        <div className="text-xs font-mono text-secondary/60 bg-black/40 p-4 rounded-xl border border-white/5 tracking-wider uppercase">
                             {t("panels.source.methodology.license")}
                         </div>
                     </div>
 
-                    <div className="bg-secondary/10 backdrop-blur-md p-8 rounded-3xl border border-secondary/20 shadow-xl group hover:bg-secondary/15 transition-all duration-300">
+                    <div className="bg-primary/40 backdrop-blur-2xl p-8 rounded-3xl border border-primary/30 shadow-2xl group hover:bg-primary/50 transition-all duration-300">
                         <h3 className="text-xl font-black text-secondary mb-4 flex items-center gap-3">
-                            <div className="p-2 bg-secondary/20 text-secondary rounded-lg">
+                            <div className="p-2 bg-secondary/20 text-secondary rounded-lg shadow-[0_0_15px_rgba(251,191,36,0.3)]">
                                 <Code className="w-5 h-5" />
                             </div>
                             {t("panels.source.academic.title")}
                         </h3>
-                        <p className="text-base text-secondary/70 mb-0 leading-relaxed font-medium">
+                        <p className="text-base text-white/80 mb-0 leading-relaxed font-medium">
                             {t("panels.source.academic.description")}
                         </p>
                     </div>

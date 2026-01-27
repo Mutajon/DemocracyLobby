@@ -17,8 +17,8 @@ export function ContactPanel() {
                         { icon: Mail, title: t("panels.contact.email.title"), sub1: t("panels.contact.email.address") },
                         { icon: Phone, title: t("panels.contact.phone.title"), sub1: t("panels.contact.phone.number") }
                     ].map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-6 p-6 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300 group hover:translate-x-2 shadow-xl">
-                            <div className="p-4 bg-secondary/20 text-secondary rounded-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(251,191,36,0.2)]">
+                        <div key={idx} className="flex items-start gap-6 p-6 rounded-3xl bg-primary/10 backdrop-blur-md border border-primary/20 hover:bg-primary/20 transition-all duration-300 group hover:translate-x-2 shadow-2xl">
+                            <div className="p-4 bg-primary/20 text-white rounded-2xl group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(147,51,234,0.2)]">
                                 <item.icon className="w-6 h-6" />
                             </div>
                             <div>

@@ -43,10 +43,10 @@ export function Sidebar({ activePanel, onPanelChange }: SidebarProps) {
             <div className="p-10 bg-transparent flex flex-col items-center text-center gap-6">
                 <LanguageSelector />
                 <div>
-                    <h1 className="text-3xl font-serif font-black text-secondary tracking-tight leading-none drop-shadow-lg">
+                    <h1 className="text-3xl font-serif font-black text-white tracking-tight leading-none drop-shadow-lg">
                         {t("sidebar.title")}
                     </h1>
-                    <span className="block text-xs font-sans font-bold text-foreground/60 mt-3 uppercase tracking-[0.2em]">
+                    <span className="block text-xs font-sans font-bold text-primary mt-3 uppercase tracking-[0.2em] drop-shadow-[0_0_10px_rgba(147,51,234,0.5)]">
                         {t("sidebar.subtitle")}
                     </span>
                 </div>
@@ -62,15 +62,15 @@ export function Sidebar({ activePanel, onPanelChange }: SidebarProps) {
                             className={cn(
                                 "group flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 text-sm font-bold w-full text-start",
                                 isActive
-                                    ? "bg-white/10 text-secondary border border-white/20 shadow-[0_0_20px_rgba(251,191,36,0.1)] translate-x-1"
+                                    ? "bg-primary/20 text-white border border-primary/30 shadow-[0_0_20px_rgba(147,51,234,0.2)] translate-x-1"
                                     : "text-foreground/70 hover:bg-white/5 hover:text-foreground"
                             )}
                         >
                             <div className={cn(
                                 "p-2.5 rounded-xl transition-all duration-300 flex-shrink-0",
                                 isActive
-                                    ? "bg-secondary/20 text-secondary scale-110 rotate-3"
-                                    : "bg-white/5 text-foreground/40 group-hover:text-secondary/70 group-hover:scale-105"
+                                    ? "bg-primary/30 text-white scale-110 rotate-3"
+                                    : "bg-white/5 text-foreground/40 group-hover:text-primary/70 group-hover:scale-105"
                             )}>
                                 <item.icon className="w-5 h-5 transition-transform duration-300" />
                             </div>
@@ -78,7 +78,7 @@ export function Sidebar({ activePanel, onPanelChange }: SidebarProps) {
 
                             {/* Active Indicator Line */}
                             {isActive && (
-                                <div className="ml-auto w-2 h-2 rounded-full bg-secondary shadow-[0_0_10px_#fbbf24]" />
+                                <div className="ml-auto w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#9333ea]" />
                             )}
                         </button>
                     )
