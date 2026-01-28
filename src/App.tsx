@@ -15,7 +15,7 @@ function AppContent() {
   };
 
   return (
-    <MainLayout 
+    <MainLayout
       sidebar={<Sidebar activePanel={activePanel} onPanelChange={handlePanelChange} />}
       isMobileMenuOpen={isMobileMenuOpen}
       setIsMobileMenuOpen={setIsMobileMenuOpen}
@@ -26,6 +26,7 @@ function AppContent() {
 }
 
 function App() {
+  console.log("App: rendering");
   return (
     <LanguageProvider>
       <AppContent />
