@@ -75,5 +75,14 @@
                 "number": "+1 (555) 123-4567 (Ext. 890)"
             }
         }
+    },
+    "splash": {
+        "subtitle": "Choose your path, know thyself",
+        "description": "Dive into a unique political simulation where you call the shots. Pick a scenario, step into a role, and face real-world dilemmas filled with tough trade-offs and unexpected consequences. Every decision surfaces values, priorities, and perspectives—turning politics into an engaging and educational experience.",
+        "buttons": {
+            "about": "About the Project",
+            "play": "Play the Game",
+            "source": "Get the Source"
+        }
     }
 }

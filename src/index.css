@@ -77,3 +77,81 @@
     @apply antialiased;
   }
 }
+
+@layer utilities {
+
+  /* Floating animations for logo faces */
+  @keyframes float-slow {
+
+    0%,
+    100% {
+      transform: translateY(0px) rotate(var(--rotate));
+    }
+
+    50% {
+      transform: translateY(-20px) rotate(var(--rotate));
+    }
+  }
+
+  @keyframes float-medium {
+
+    0%,
+    100% {
+      transform: translateY(0px) rotate(var(--rotate));
+    }
+
+    50% {
+      transform: translateY(-15px) rotate(var(--rotate));
+    }
+  }
+
+  @keyframes float-subtle {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 4s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float-medium 3s ease-in-out infinite;
+  }
+
+  .animate-float-subtle {
+    animation: float-subtle 3.5s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
