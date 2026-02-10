@@ -19,60 +19,58 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
+        <div className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden flex flex-col items-center">
             {/* Background Image */}
             <div
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+                className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
                 style={{ backgroundImage: 'url("/background2.webp")' }}
             />
             {/* Background Overlay */}
-            <div className="absolute inset-0 z-1 backdrop-blur-[2px] bg-black/40" />
+            <div className="fixed inset-0 z-1 backdrop-blur-[2px] bg-black/40" />
 
             {/* Main content container */}
-            <div className="relative z-10 flex flex-col items-center justify-center px-6 max-w-4xl mx-auto text-center">
+            <div className="relative z-10 flex flex-col items-center justify-center px-6 py-12 md:py-20 max-w-4xl mx-auto text-center min-h-screen">
 
                 {/* Animated Logo Faces */}
-                <div className="relative w-full h-32 mb-8 flex items-center justify-center">
-                    <img
-                        src="/titleLogoFace1.webp"
-                        alt=""
-                        className="absolute w-20 h-20 md:w-24 md:h-24 object-contain animate-float-subtle"
-                        style={{
-                            left: '20%',
-                            filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                            animationDelay: '0s'
-                        }}
-                    />
-                    <img
-                        src="/titleLogoFace2.webp"
-                        alt=""
-                        className="absolute w-20 h-20 md:w-24 md:h-24 object-contain animate-float-subtle"
-                        style={{
-                            left: '35%',
-                            filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                            animationDelay: '0.5s'
-                        }}
-                    />
-                    <img
-                        src="/titleLogoFace3.webp"
-                        alt=""
-                        className="absolute w-20 h-20 md:w-24 md:h-24 object-contain animate-float-subtle"
-                        style={{
-                            right: '35%',
-                            filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                            animationDelay: '1s'
-                        }}
-                    />
-                    <img
-                        src="/titleLogoFace4.webp"
-                        alt=""
-                        className="absolute w-20 h-20 md:w-24 md:h-24 object-contain animate-float-subtle"
-                        style={{
-                            right: '20%',
-                            filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                            animationDelay: '1.5s'
-                        }}
-                    />
+                <div className="relative w-full mb-8 flex items-center justify-center">
+                    <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6">
+                        <img
+                            src="/titleLogoFace1.webp"
+                            alt=""
+                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
+                            style={{
+                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
+                                animationDelay: '0s'
+                            }}
+                        />
+                        <img
+                            src="/titleLogoFace2.webp"
+                            alt=""
+                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
+                            style={{
+                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
+                                animationDelay: '0.5s'
+                            }}
+                        />
+                        <img
+                            src="/titleLogoFace3.webp"
+                            alt=""
+                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
+                            style={{
+                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
+                                animationDelay: '1s'
+                            }}
+                        />
+                        <img
+                            src="/titleLogoFace4.webp"
+                            alt=""
+                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
+                            style={{
+                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
+                                animationDelay: '1.5s'
+                            }}
+                        />
+                    </div>
                 </div>
 
                 {/* Title Logo */}
@@ -149,7 +147,7 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
                 {/* Credits Button */}
                 <button
                     onClick={() => setShowCredits(true)}
-                    className="mt-8 text-sm text-foreground/50 hover:text-secondary underline decoration-secondary/30 hover:decoration-secondary transition-all animate-fade-in-up"
+                    className="mt-12 mb-8 text-sm text-foreground/50 hover:text-secondary underline decoration-secondary/30 hover:decoration-secondary transition-all animate-fade-in-up"
                     style={{ animationDelay: '1.4s' }}
                 >
                     {t("splash.buttons.credits")}
