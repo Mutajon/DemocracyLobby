@@ -1,43 +1,36 @@
 
 import { useState } from 'react';
-import { MainLayout } from '@/components/layout/MainLayout';
-import { Sidebar, type PanelType } from '@/components/landing/Sidebar';
-import { ContentArea } from '@/components/landing/ContentArea';
 import { SplashScreen } from '@/components/landing/SplashScreen';
+import { AboutPage } from '@/components/landing/AboutPage';
+import { SourceCodePage } from '@/components/landing/SourceCodePage';
 import { LanguageProvider } from "@/context/LanguageContext";
 
+type PageType = "splash" | "about" | "source";
+
 function AppContent() {
-  const [showSplash, setShowSplash] = useState(true);
-  const [activePanel, setActivePanel] = useState<PanelType>("about");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<PageType>("splash");
 
-  const handlePanelChange = (panel: PanelType) => {
-    setActivePanel(panel);
-    setIsMobileMenuOpen(false);
+  const handleNavigate = (page: "about" | "game" | "source") => {
+    if (page === "game") return; // Handled within SplashScreen
+    setCurrentPage(page);
   };
 
-  const handleSplashNavigate = (panel: "about" | "game" | "source") => {
-    setActivePanel(panel);
-    setShowSplash(false);
+  const handleBack = () => {
+    setCurrentPage("splash");
   };
 
-  if (showSplash) {
-    return <SplashScreen onNavigate={handleSplashNavigate} />;
+  if (currentPage === "about") {
+    return <AboutPage onBack={handleBack} />;
   }
 
-  return (
-    <MainLayout
-      sidebar={<Sidebar activePanel={activePanel} onPanelChange={handlePanelChange} />}
-      isMobileMenuOpen={isMobileMenuOpen}
-      setIsMobileMenuOpen={setIsMobileMenuOpen}
-    >
-      <ContentArea activePanel={activePanel} />
-    </MainLayout>
-  );
+  if (currentPage === "source") {
+    return <SourceCodePage onBack={handleBack} />;
+  }
+
+  return <SplashScreen onNavigate={handleNavigate} />;
 }
 
 function App() {
-  console.log("App: rendering");
   return (
     <LanguageProvider>
       <AppContent />

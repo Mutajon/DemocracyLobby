@@ -10,18 +10,17 @@
             "language": "Language"
         },
         "footer": {
-            "university": "University Research",
+            "university": "Inter-University Research",
             "copyright": "© {{year}} Democracy Game"
         }
     },
     "panels": {
         "about": {
-            "title": "About the Research",
-            "p1_strong": "aMAZE'n Politics",
-            "p1": "is an interactive research platform designed to model and analyze political decision-making processes.",
-            "p2": "This study aims to understand how individuals navigate complex policy landscapes when presented with conflicting incentives. The data collected will contribute to ongoing research in the Department of Political Science.",
-            "note_strong": "Note to Participants:",
-            "note": "Your participation helps advance our understanding of democratic systems. All data is anonymized and used solely for academic purposes."
+            "title": "About the Project",
+            "p1": "The Democracy Game is a political simulation of decision-making. Players can choose between several different political environments, and between the role of powerful individuals or ordinary citizens, and then experience evolving dilemmas that walk the line between personal lives and the public sphere. The goal of the game is to serve as a tool for exploring decision-making processes and self-identity perception, as well as an educational tool for encouraging political awareness and literacy. The game emphasizes issues of liberalism, autonomy, and democracy, and provides players with constant feedback on how daily dilemmas relate to these values.",
+            "p2": "In the game, we use an extensive theoretical background and generative artificial intelligence to challenge players' values and respond to their choices dynamically, as well as to provide feedback and reflect on values, considerations, and insights resulting from their actions.",
+            "p3": "You are invited to try the game for yourself right here:",
+            "gallery_title": "Take a Peek Inside"
         },
         "game": {
             "intro": {
@@ -46,11 +45,10 @@
         },
         "source": {
             "title": "Research Data & Source",
-            "description": "Access the codebase and methodology used in this study.",
+            "description": "Access the codebase and theoretical background used in this study.",
             "methodology": {
-                "title": "Methodology",
-                "description": "Review the algorithmic framework and decision-making models implemented in the simulation.",
-                "license": "MIT License"
+                "title": "Theory",
+                "description": "Review the theoretical frameworks and ideas that served as the basis for this game."
             },
             "academic": {
                 "title": "Academic Use",
@@ -82,7 +80,51 @@
         "buttons": {
             "about": "About the Project",
             "play": "Play the Game",
-            "source": "Get the Source"
+            "source": "Get the Source Code",
+            "credits": "Credits & Contact"
+        },
+        "consent": {
+            "text": "This game is part of a research study. Your choices are recorded anonymously for academic analysis.",
+            "more_info": "More Info",
+            "button": "Agreed, Proceed",
+            "info_details": "This study is conducted by researchers from Hebrew University, Tel Aviv University, Technion, and Bar-Ilan University. The game presents political dilemmas to analyze decision-making patterns. No personally identifiable information is collected. Participation is voluntary, and you may stop at any time. For questions, please contact the research team."
+        },
+        "credits": {
+            "title": "Credits & Contact",
+            "contact_email": "Contact: jonathanbd@gmail.com",
+            "people": {
+                "uriel": {
+                    "name": "Prof Uriel Abulof",
+                    "role": "Political Science, TAU; Conflicts, democracy, political existentialism"
+                },
+                "ori": {
+                    "name": "Prof Ori Aronson",
+                    "role": "Law, Bar-Ilan; Courts, constitutions, cooperation: the one and the many in legal institutions"
+                },
+                "jonathan": {
+                    "name": "Dr Jonathan Ben-David",
+                    "role": "Educational game design and impact. Post-doc, HUJI"
+                },
+                "joachim": {
+                    "name": "Prof Joachim Meyer",
+                    "role": "Industrial Engineering, TAU; Models of decision making and behavioral research on decisions"
+                },
+                "ido": {
+                    "name": "Prof Ido Roll",
+                    "role": "Education in Sci. and Tech. & Data and Decision Sciences, Technion; Understanding learning using AI"
+                },
+                "dafna": {
+                    "name": "Prof Dafna Shahaf",
+                    "role": "Computer Science, HUJI; Develop systems that can support human capacities such as humor and creativity"
+                },
+                "daria": {
+                    "name": "Daria Schleifer",
+                    "role": "PhD student in the Department of Political Science at Tel Aviv University"
+                }
+            }
         }
+    },
+    "general": {
+        "back": "Back"
     }
 }

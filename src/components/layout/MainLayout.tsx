@@ -21,7 +21,7 @@ export function MainLayout({ sidebar, children, isMobileMenuOpen, setIsMobileMen
             {/* Background Image */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
-                style={{ backgroundImage: 'url("/background.jpg")' }}
+                style={{ backgroundImage: 'url("/background2.webp")' }}
             />
             {/* Background Overlay for better contrast */}
             <div className="absolute inset-0 z-1 backdrop-blur-[2px] bg-black/30" />

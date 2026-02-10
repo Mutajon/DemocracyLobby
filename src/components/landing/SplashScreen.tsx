@@ -1,4 +1,8 @@
+
 import { useLangs } from "@/hooks/useLangs";
+import { useState } from 'react';
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { CreditsModal } from "./CreditsModal";
 
 interface SplashScreenProps {
     onNavigate: (panel: "about" | "game" | "source") => void;
@@ -6,6 +10,9 @@ interface SplashScreenProps {
 
 export function SplashScreen({ onNavigate }: SplashScreenProps) {
     const { t, language, setLanguage } = useLangs();
+    const [showConsent, setShowConsent] = useState(false);
+    const [showMoreInfo, setShowMoreInfo] = useState(false);
+    const [showCredits, setShowCredits] = useState(false);
 
     const toggleLanguage = () => {
         setLanguage(language === 'en' ? 'he' : 'en');
@@ -16,7 +23,7 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
             {/* Background Image */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: 'url("/background.jpg")' }}
+                style={{ backgroundImage: 'url("/background2.webp")' }}
             />
             {/* Background Overlay */}
             <div className="absolute inset-0 z-1 backdrop-blur-[2px] bg-black/40" />
@@ -82,7 +89,7 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
 
                 {/* Subtitle with gradient */}
                 <h2
-                    className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold mb-8 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-fade-in-up"
+                    className="text-xl md:text-2xl lg:text-3xl font-serif font-bold mb-8 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-fade-in-up"
                     style={{
                         animationDelay: '0.6s',
                         backgroundSize: '200% auto'
@@ -123,7 +130,7 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
 
                     {/* Play Button - Primary */}
                     <button
-                        onClick={() => onNavigate("game")}
+                        onClick={() => setShowConsent(true)}
                         className="group relative px-10 py-5 rounded-2xl font-bold text-base md:text-lg transition-all duration-300 bg-gradient-to-r from-primary to-primary/80 text-white hover:from-primary hover:to-secondary hover:scale-110 hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] border-2 border-primary/50 hover:border-secondary w-full sm:w-auto"
                     >
                         <span className="relative z-10">{t("splash.buttons.play")}</span>
@@ -138,7 +145,81 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
                         <span className="relative z-10">{t("splash.buttons.source")}</span>
                     </button>
                 </div>
+
+                {/* Credits Button */}
+                <button
+                    onClick={() => setShowCredits(true)}
+                    className="mt-8 text-sm text-foreground/50 hover:text-secondary underline decoration-secondary/30 hover:decoration-secondary transition-all animate-fade-in-up"
+                    style={{ animationDelay: '1.4s' }}
+                >
+                    {t("splash.buttons.credits")}
+                </button>
             </div>
+
+            {/* Consent Modal */}
+            {showConsent && (
+                <div
+                    className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+                    onClick={() => setShowConsent(false)}
+                >
+                    <div
+                        className="bg-slate-900 border border-slate-700 p-8 rounded-2xl max-w-md text-center shadow-2xl relative"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <h3 className="text-xl font-bold text-white mb-6 leading-relaxed">
+                            {t("splash.consent.text")}
+                        </h3>
+                        <div className="flex gap-4 justification-center">
+                            <button
+                                onClick={() => setShowMoreInfo(true)}
+                                className="flex-1 px-6 py-3 rounded-xl font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                            >
+                                {t("splash.consent.more_info")}
+                            </button>
+                            <button
+                                onClick={() => {
+                                    window.location.href = 'https://amazen-politics.onrender.com/#/lobby';
+                                }}
+                                className="flex-1 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all duration-200"
+                            >
+                                {t("splash.consent.button")}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* More Info Modal */}
+            {showMoreInfo && (
+                <div
+                    className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+                    onClick={() => setShowMoreInfo(false)}
+                >
+                    <div
+                        className="bg-slate-900 border border-slate-700 p-8 pt-10 rounded-2xl max-w-lg shadow-2xl relative"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={() => setShowMoreInfo(false)}
+                            className="absolute top-4 left-4 p-2 text-slate-400 hover:text-white transition-colors"
+                            aria-label="Go back"
+                        >
+                            {t("sidebar.title") === 'aMAZE’n' ? <ArrowLeft size={24} /> : <ArrowRight size={24} />}
+                        </button>
+                        <h3 className="text-2xl font-serif font-bold text-secondary mb-6 flex items-center gap-3">
+                            <span>{t("splash.consent.more_info")}</span>
+                        </h3>
+                        <p className="text-slate-300 leading-relaxed mb-4 text-lg">
+                            {t("splash.consent.info_details")}
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {/* Credits Modal */}
+            {showCredits && (
+                <CreditsModal onClose={() => setShowCredits(false)} />
+            )}
         </div>
     );
 }
