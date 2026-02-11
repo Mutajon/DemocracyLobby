@@ -32,45 +32,15 @@ export function SplashScreen({ onNavigate }: SplashScreenProps) {
             <div className="relative z-10 flex flex-col items-center justify-center px-6 py-12 md:py-20 max-w-4xl mx-auto text-center min-h-screen">
 
                 {/* Animated Logo Faces */}
-                <div className="relative w-full mb-8 flex items-center justify-center">
-                    <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6">
-                        <img
-                            src="/titleLogoFace1.webp"
-                            alt=""
-                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
-                            style={{
-                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                                animationDelay: '0s'
-                            }}
-                        />
-                        <img
-                            src="/titleLogoFace2.webp"
-                            alt=""
-                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
-                            style={{
-                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                                animationDelay: '0.5s'
-                            }}
-                        />
-                        <img
-                            src="/titleLogoFace3.webp"
-                            alt=""
-                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
-                            style={{
-                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                                animationDelay: '1s'
-                            }}
-                        />
-                        <img
-                            src="/titleLogoFace4.webp"
-                            alt=""
-                            className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-float-subtle"
-                            style={{
-                                filter: 'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
-                                animationDelay: '1.5s'
-                            }}
-                        />
-                    </div>
+                <div className="relative w-full mb-4 flex items-center justify-center">
+                    <img
+                        src="/logoFaces.webp"
+                        alt=""
+                        className="w-full max-w-[200px] md:max-w-[300px] lg:max-w-[400px] h-auto object-contain animate-float-simple"
+                        style={{
+                            filter: 'drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))'
+                        }}
+                    />
                 </div>
 
                 {/* Title Logo */}
