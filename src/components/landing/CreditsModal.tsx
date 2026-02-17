@@ -63,9 +63,29 @@ export function CreditsModal({ onClose }: CreditsModalProps) {
                     ))}
                 </div>
 
-                {/* Footer Logo/Copyright optional */}
-                <div className="mt-12 pt-8 border-t border-white/5 text-center text-slate-500 text-sm">
-                    <p>© {new Date().getFullYear()} {t("sidebar.footer.university")}</p>
+                {/* Footer / Funding */}
+                <div className="mt-16 pt-12 border-t border-white/10">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <img
+                            src="/pumby.png"
+                            alt="PUMBY Logo"
+                            className="h-16 w-auto rounded-xl shadow-md border border-white/10"
+                        />
+                        <p className="text-lg text-slate-400 font-medium text-center sm:text-start">
+                            {t("panels.about.funding")}
+                            <a
+                                href="https://pumby.org/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-secondary hover:text-primary font-bold underline underline-offset-4 decoration-secondary/30 transition-colors"
+                            >
+                                {t("panels.about.funding_link")}
+                            </a>
+                        </p>
+                    </div>
+                    <p className="mt-12 text-center text-slate-500 text-sm">
+                        © {new Date().getFullYear()} {t("sidebar.footer.university")}
+                    </p>
                 </div>
             </div>
         </div>

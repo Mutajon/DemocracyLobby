@@ -19,7 +19,13 @@
             "title": "About the Project",
             "p1": "The Democracy Game is a political simulation of decision-making. Players can choose between several different political environments, and between the role of powerful individuals or ordinary citizens, and then experience evolving dilemmas that walk the line between personal lives and the public sphere. The goal of the game is to serve as a tool for exploring decision-making processes and self-identity perception, as well as an educational tool for encouraging political awareness and literacy. The game emphasizes issues of liberalism, autonomy, and democracy, and provides players with constant feedback on how daily dilemmas relate to these values.",
             "p2": "In the game, we use an extensive theoretical background and generative artificial intelligence to challenge players' values and respond to their choices dynamically, as well as to provide feedback and reflect on values, considerations, and insights resulting from their actions.",
-            "p3": "You are invited to try the game for yourself right here:",
+            "p3": "You are welcome to try the game yourself right ",
+            "p3_link": "here.",
+            "p4": "If you're curious about the theory and methods that were used to create this game, or if you would like to access the code to make your own modifications and changes, you can do that in the ",
+            "p4_link": "code and methods section.",
+            "team_title": "Project Team",
+            "funding": "This project was generously funded by ",
+            "funding_link": "PUMBY",
             "gallery_title": "Take a Peek Inside"
         },
         "game": {

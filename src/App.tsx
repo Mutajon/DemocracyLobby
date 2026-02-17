@@ -20,7 +20,7 @@ function AppContent() {
   };
 
   if (currentPage === "about") {
-    return <AboutPage onBack={handleBack} />;
+    return <AboutPage onBack={handleBack} onNavigate={handleNavigate} />;
   }
 
   if (currentPage === "source") {

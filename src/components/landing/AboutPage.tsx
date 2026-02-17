@@ -1,14 +1,17 @@
 
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Mail } from "lucide-react";
 import { useLangs } from "@/hooks/useLangs";
 import { GeometricReveal } from "./GeometricReveal";
 
 interface AboutPageProps {
     onBack: () => void;
+    onNavigate: (page: "source") => void;
 }
 
-export function AboutPage({ onBack }: AboutPageProps) {
+const PEOPLE_KEYS = ['uriel', 'ori', 'jonathan', 'joachim', 'ido', 'dafna', 'daria'];
+
+export function AboutPage({ onBack, onNavigate }: AboutPageProps) {
     const { t, dir } = useLangs();
     const [showConsent, setShowConsent] = useState(false);
     const [showMoreInfo, setShowMoreInfo] = useState(false);
@@ -40,28 +43,93 @@ export function AboutPage({ onBack }: AboutPageProps) {
                         {t("panels.about.title")}
                     </h2>
 
-                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start mb-20">
                         {/* Left Column: Text Content */}
                         <div className="flex-1 space-y-10 text-foreground/90 leading-relaxed text-xl md:text-2xl [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
                             <p>{t("panels.about.p1")}</p>
                             <p>{t("panels.about.p2")}</p>
 
-                            <div className="pt-8 pb-12 text-center sm:text-start">
-                                <p className="mb-8">{t("panels.about.p3")}</p>
+                            <div className="pt-8 pb-12 space-y-6">
+                                <p>
+                                    {t("panels.about.p3")}
+                                    <button
+                                        onClick={() => setShowConsent(true)}
+                                        className="text-secondary hover:text-primary font-bold underline transition-colors decoration-secondary/30 underline-offset-4"
+                                    >
+                                        {t("panels.about.p3_link")}
+                                    </button>
+                                </p>
 
-                                <button
-                                    onClick={() => setShowConsent(true)}
-                                    className="group relative px-10 py-5 rounded-2xl font-bold text-base md:text-lg transition-all duration-300 bg-gradient-to-r from-primary to-primary/80 text-white hover:from-primary hover:to-secondary hover:scale-110 hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] border-2 border-primary/50 hover:border-secondary w-full sm:w-auto"
-                                >
-                                    <span className="relative z-10">{t("splash.buttons.play")}</span>
-                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-secondary/0 to-secondary/0 group-hover:from-secondary/20 group-hover:to-secondary/20 transition-all duration-300" />
-                                </button>
+                                <p className="text-lg md:text-xl opacity-90">
+                                    {t("panels.about.p4")}
+                                    <button
+                                        onClick={() => onNavigate("source")}
+                                        className="text-secondary hover:text-primary font-bold underline transition-colors decoration-secondary/30 underline-offset-4"
+                                    >
+                                        {t("panels.about.p4_link")}
+                                    </button>
+                                </p>
                             </div>
                         </div>
 
                         {/* Right Column: Image Carousel */}
                         <div className="w-full lg:w-[480px] xl:w-[560px] flex-shrink-0 mx-auto lg:mx-0 pb-12 lg:pb-0 lg:sticky lg:top-0">
                             <GeometricReveal />
+                        </div>
+                    </div>
+
+                    {/* Team Section */}
+                    <div className="pt-16 border-t border-white/10">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-black text-secondary drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                                {t("panels.about.team_title")}
+                            </h2>
+                            <div className="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors bg-white/5 px-6 py-3 rounded-2xl border border-white/10 backdrop-blur-md w-fit">
+                                <Mail size={20} />
+                                <a href="mailto:jonathanbd@gmail.com" className="font-bold text-lg hover:underline">
+                                    jonathanbd@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12 mb-16">
+                            {PEOPLE_KEYS.map((key) => (
+                                <div key={key} className="flex flex-col items-center text-center group">
+                                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/10 shadow-xl mb-6 group-hover:scale-105 group-hover:border-primary/50 transition-all duration-300">
+                                        <img
+                                            src={`/credits/${key}.jpg`}
+                                            alt={t(`splash.credits.people.${key}.name`)}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-2">
+                                        {t(`splash.credits.people.${key}.name`)}
+                                    </h3>
+                                    <p className="text-base text-slate-400 leading-relaxed max-w-xs">
+                                        {t(`splash.credits.people.${key}.role`)}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Funding Section */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-8 py-10 px-8 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-md">
+                            <img
+                                src="/pumby.png"
+                                alt="PUMBY Logo"
+                                className="h-20 sm:h-24 w-auto rounded-2xl shadow-lg border border-white/10"
+                            />
+                            <p className="text-xl md:text-2xl text-slate-300 font-medium text-center sm:text-start leading-relaxed">
+                                {t("panels.about.funding")}
+                                <a
+                                    href="https://pumby.org/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-secondary hover:text-primary font-bold underline underline-offset-4 decoration-secondary/30 transition-colors"
+                                >
+                                    {t("panels.about.funding_link")}
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
