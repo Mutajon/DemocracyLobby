@@ -157,7 +157,7 @@ export function AboutPage({ onBack, onNavigate }: AboutPageProps) {
                             </button>
                             <button
                                 onClick={() => {
-                                    window.location.href = 'https://amazen-politics.onrender.com/#/lobby';
+                                    window.location.href = 'https://amazenpolitics.vercel.app/#/lobby';
                                 }}
                                 className="flex-1 px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all duration-200"
                             >

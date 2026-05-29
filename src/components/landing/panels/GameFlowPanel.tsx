@@ -6,7 +6,7 @@ import { useLangs } from "@/hooks/useLangs";
 import { cn } from "@/lib/utils";
 
 // Placeholder implementation of a game redirect
-const GAME_URL = "https://amazen-politics.onrender.com/#/lobby";
+const GAME_URL = "https://amazenpolitics.vercel.app/#/lobby";
 
 export function GameFlowPanel() {
     const { t, dir } = useLangs();

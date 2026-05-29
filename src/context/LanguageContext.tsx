@@ -1,4 +1,5 @@
 
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState, type ReactNode, useEffect } from "react";
 import en from "../locales/en.json";
 import he from "../locales/he.json";
@@ -25,7 +26,7 @@ const translations: Record<Language, Translations> = {
 export function LanguageProvider({ children }: { children: ReactNode }) {
     const [language, setLanguage] = useState<Language>(() => {
         const saved = localStorage.getItem("language");
-        return (saved === "en" || saved === "he") ? saved : "en";
+        return (saved === "en" || saved === "he") ? saved : "he";
     });
 
     useEffect(() => {
@@ -35,11 +36,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // Helper to access nested keys like "panels.about.title"
     const t = (key: string): string => {
         const keys = key.split(".");
-        let value: any = translations[language];
+        let value: unknown = translations[language];
 
         for (const k of keys) {
             if (value && typeof value === 'object' && k in value) {
-                value = value[k as keyof typeof value];
+                value = (value as Record<string, unknown>)[k];
             } else {
                 console.warn(`Missing translation for key: ${key} in language: ${language}`);
                 return key;
