@@ -1,9 +1,9 @@
 import type { LucideIcon } from "lucide-react";
 import {
   BrainCircuit,
+  FlaskConical,
   Gavel,
   Landmark,
-  Scale,
   ShieldCheck,
   Sparkles,
   Users,
@@ -28,7 +28,7 @@ export interface PortfolioGame {
   mechanics: Record<Language, string[]>;
   visual: string;
   accent: string;
-  href?: string;
+  href?: string | LocalizedText;
 }
 
 export interface RationalePoint {
@@ -176,7 +176,10 @@ export const games: PortfolioGame[] = [
     },
     visual: "/project-assets/pluribus/maze-overview.png",
     accent: "#f0b35b",
-    href: "https://pluribus-zeta.vercel.app/",
+    href: {
+      he: "https://pluribus-zeta.vercel.app/",
+      en: "https://pluribus-zeta.vercel.app/en",
+    },
   },
   {
     id: "safe-future",
@@ -224,7 +227,7 @@ export const games: PortfolioGame[] = [
       he: ["סולם 0-5", "סיכויי אישור", "הכנה משפטית", "שאלוני סיכום וניסוי"],
       en: ["0-5 ladder", "Approval odds", "Legal preparation", "Experimental summary questionnaires"],
     },
-    visual: "/project-assets/sanction-ladder/background.webp",
+    visual: "/screenshots/sanctionladder.png",
     accent: "#e95a47",
     href: "https://sanction-ladder.vercel.app/",
   },
@@ -248,7 +251,7 @@ export const rationalePoints: RationalePoint[] = [
     },
   },
   {
-    icon: Scale,
+    icon: FlaskConical,
     title: { he: "מחקר, למידה ועיצוב", en: "Research, Learning, and Design" },
     text: {
       he: "כל פעילות היא גם כלי מחקרי וגם כלי פדגוגי: היא יוצרת נתונים על בחירות, אך גם מזמינה שיחה על מה שהבחירות חושפות.",
