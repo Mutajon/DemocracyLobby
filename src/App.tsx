@@ -331,6 +331,12 @@ function AppContent() {
     [activeGameId]
   );
 
+  const activeHref = useMemo(() => {
+    if (!activeGame.href) return undefined;
+    if (typeof activeGame.href === "string") return activeGame.href;
+    return activeGame.href[language];
+  }, [activeGame.href, language]);
+
   const ActiveIcon = activeGame.icon;
   const textAlign = dir === "rtl" ? "text-right" : "text-left";
   const DetailsChevron = dir === "rtl" ? ChevronLeft : ChevronRight;
@@ -347,6 +353,24 @@ function AppContent() {
       {copy}
     </EditableText>
   );
+
+  useEffect(() => {
+    const elements = document.querySelectorAll<HTMLElement>("[data-sr]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("sr-visible");
+          } else {
+            entry.target.classList.remove("sr-visible");
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [deletedIds, activeGameId, language, devMode]);
 
   const sectionLinks = sectionIds.map((id) => ({
     id,
@@ -498,7 +522,7 @@ function AppContent() {
 
       <section id="rationale" className="scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="reveal max-w-3xl">
+          <div data-sr="left" className="max-w-3xl">
             <p className="text-sm font-black text-[#9f5d39]">
               {e("rationale.kicker", l(uiText.rationaleKicker))}
             </p>
@@ -515,8 +539,8 @@ function AppContent() {
               return (
                 <article
                   key={l(point.title)}
-                  className={`reveal rounded-[8px] border border-[#17201d]/12 bg-white/70 p-6 shadow-sm ${devMode === "delete" ? "deletable-element" : ""}`}
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  data-sr={index % 2 === 0 ? "left" : "right"}
+                  className={`rounded-[8px] border border-[#17201d]/12 bg-white/70 p-6 shadow-sm ${devMode === "delete" ? "deletable-element" : ""}`}
                   onClick={(event) => {
                     if (devMode !== "delete") return;
                     event.preventDefault();
@@ -535,7 +559,7 @@ function AppContent() {
 
       <section id="games" className="scroll-mt-20 bg-[#17201d] px-4 py-20 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="reveal flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div data-sr="left" className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-sm font-black text-[#f7d96b]">{e("games.kicker", l(uiText.gamesKicker))}</p>
               <h2 className="mt-3 text-4xl font-black sm:text-5xl">{e("games.title", l(uiText.gamesTitle))}</h2>
@@ -545,73 +569,74 @@ function AppContent() {
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="grid gap-3">
-              {games.map((game, index) => {
+              {games.map((game) => {
                 const Icon = game.icon;
                 const isActive = game.id === activeGame.id;
                 const elementId = `element.gameRow.${game.id}`;
                 if (deletedIds.includes(elementId)) return null;
                 return (
-                  <article
+                  <button
                     key={game.id}
-                    className={`reveal rounded-[8px] border p-4 text-start transition ${
+                    data-sr="left"
+                    className={`w-full flex items-start gap-4 rounded-[8px] border p-4 text-start transition cursor-pointer group ${
                       isActive
                         ? "selected-game-tab border-[#f7d96b]/55 shadow-[0_22px_70px_rgba(74,35,126,0.38)]"
                         : "border-white/10 bg-white/5 hover:bg-white/9"
                     } ${devMode === "delete" ? "deletable-element" : ""}`}
-                    style={{ animationDelay: `${index * 70}ms` }}
                     onClick={(event) => {
-                      if (devMode !== "delete") return;
-                      event.preventDefault();
-                      deleteElement(elementId);
+                      if (devMode === "delete") {
+                        event.preventDefault();
+                        deleteElement(elementId);
+                        return;
+                      }
+                      setActiveGameId(game.id);
                     }}
                   >
-                    <button
-                      className="flex w-full items-start gap-4 text-start"
-                      onClick={(event) => {
-                        if (devMode === "delete") {
-                          event.preventDefault();
-                          return;
-                        }
-                        setActiveGameId(game.id);
-                      }}
-                    >
-                      <span className="grid size-11 shrink-0 place-items-center rounded-[8px] bg-black/20" aria-hidden="true">
-                        <Icon size={22} style={{ color: game.accent }} />
+                    <span className="grid size-11 shrink-0 place-items-center rounded-[8px] bg-black/20" aria-hidden="true">
+                      <Icon size={22} style={{ color: game.accent }} />
+                    </span>
+                    <span className="block text-start">
+                      <span className={`block text-xl font-black transition-colors ${
+                        isActive 
+                          ? "text-[#f7d96b]" 
+                          : "text-white group-hover:text-[#f7d96b]"
+                      }`}>
+                        {e(`game.${game.id}.title.hero`, l(game.title))}
                       </span>
-                      <span>
-                        <span className={`block text-xl font-black transition-colors ${isActive ? "text-[#f7d96b]" : "text-white"}`}>
-                          {e(`game.${game.id}.title.hero`, l(game.title))}
-                        </span>
-                        <span className={`mt-1 block leading-6 transition-colors ${isActive ? "text-[#f7d96b]/82" : "text-white/65"}`}>
-                          {e(`game.${game.id}.eyebrow.hero`, l(game.eyebrow))}
-                        </span>
+                      <span className={`mt-1 block leading-6 transition-colors ${
+                        isActive 
+                          ? "text-[#f7d96b]/82" 
+                          : "text-white/65 group-hover:text-[#f7d96b]/82"
+                      }`}>
+                        {e(`game.${game.id}.eyebrow.hero`, l(game.eyebrow))}
                       </span>
-                    </button>
-                  </article>
+                    </span>
+                  </button>
                 );
               })}
             </div>
 
             {!deletedIds.includes("element.gameDetails") && <article
               key={activeGame.id}
-              className={`reveal drawer-card overflow-hidden rounded-[8px] border border-white/14 bg-white/[0.06] ${devMode === "delete" ? "deletable-element" : ""}`}
+              data-sr="right"
+              className={`drawer-card overflow-hidden rounded-[8px] border border-white/14 bg-white/[0.06] ${devMode === "delete" ? "deletable-element" : ""}`}
               onClick={(event) => {
                 if (devMode !== "delete") return;
                 event.preventDefault();
                 deleteElement("element.gameDetails");
               }}
             >
-              <div className="relative min-h-[320px]">
-                <img src={activeGame.visual} alt="" className="absolute inset-0 h-full w-full object-cover" />
+              <div className="relative min-h-[320px] overflow-hidden">
+                <img src={activeGame.visual} alt="" className="absolute inset-0 h-full w-full object-cover animate-slow-zoom" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#17201d] via-[#17201d]/46 to-transparent" />
                 <div className="absolute bottom-0 start-0 p-6 sm:p-8">
                   <div className="mb-4 grid size-14 place-items-center rounded-[8px] bg-black/34 backdrop-blur">
                     <ActiveIcon size={28} style={{ color: activeGame.accent }} />
                   </div>
                   <p className="text-sm font-black text-white/64">
-                    {e(`game.${activeGame.id}.eyebrow.details`, l(activeGame.eyebrow))}
+                    {e(`game.${activeGame.id}.eyebrow.hero`, l(activeGame.eyebrow))}
                   </p>
-                  <h3 className="mt-1 text-4xl font-black">{e(`game.${activeGame.id}.title.details`, l(activeGame.title))}</h3>
+                  <h3 className="mt-1 text-4xl font-black">{e(`game.${activeGame.id}.title.hero`, l(activeGame.title))}</h3>
                 </div>
               </div>
 
@@ -638,20 +663,20 @@ function AppContent() {
                   </div>
                   <a
                     className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-base font-black transition ${
-                      activeGame.href
+                      activeHref
                         ? "bg-[#f7d96b] text-[#17201d] hover:-translate-y-0.5"
                         : "cursor-not-allowed bg-white/10 text-white/48"
                     }`}
-                    href={activeGame.href ?? undefined}
-                    target={activeGame.href ? "_blank" : undefined}
-                    rel={activeGame.href ? "noopener noreferrer" : undefined}
-                    aria-disabled={!activeGame.href}
+                    href={activeHref}
+                    target={activeHref ? "_blank" : undefined}
+                    rel={activeHref ? "noopener noreferrer" : undefined}
+                    aria-disabled={!activeHref}
                     onClick={(event) => {
-                      if (!activeGame.href) event.preventDefault();
+                      if (!activeHref) event.preventDefault();
                     }}
                   >
-                    {e(activeGame.href ? "games.playGame" : "games.linkPending", l(activeGame.href ? uiText.playGame : uiText.linkPending))}
-                    {activeGame.href && <ArrowUpRight size={18} />}
+                    {e(activeHref ? "games.playGame" : "games.linkPending", l(activeHref ? uiText.playGame : uiText.linkPending))}
+                    {activeHref && <ArrowUpRight size={18} />}
                   </a>
                 </div>
               </div>
@@ -662,7 +687,7 @@ function AppContent() {
 
       <section id="team" className="scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="reveal flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div data-sr="left" className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-sm font-black text-[#9f5d39]">{e("team.kicker", l(uiText.teamKicker))}</p>
               <h2 className="mt-3 text-4xl font-black sm:text-5xl">{e("team.title", t("panels.about.team_title"))}</h2>
@@ -683,8 +708,8 @@ function AppContent() {
               return (
                 <article
                   key={key}
-                  className={`reveal rounded-[8px] border border-[#17201d]/10 bg-white p-5 shadow-sm ${devMode === "delete" ? "deletable-element" : ""}`}
-                  style={{ animationDelay: `${index * 60}ms` }}
+                  data-sr={index % 2 === 0 ? "left" : "right"}
+                  className={`rounded-[8px] border border-[#17201d]/10 bg-white p-5 shadow-sm ${devMode === "delete" ? "deletable-element" : ""}`}
                   onClick={(event) => {
                     if (devMode !== "delete") return;
                     event.preventDefault();
@@ -706,7 +731,8 @@ function AppContent() {
           </div>
 
           {!deletedIds.includes("element.funding") && <div
-            className={`reveal mt-10 flex flex-col items-center gap-5 rounded-[8px] border border-[#17201d]/10 bg-[#fff8df] p-6 text-center sm:flex-row sm:text-start ${devMode === "delete" ? "deletable-element" : ""}`}
+            data-sr="left"
+            className={`mt-10 flex flex-col items-center gap-5 rounded-[8px] border border-[#17201d]/10 bg-[#fff8df] p-6 text-center sm:flex-row sm:text-start ${devMode === "delete" ? "deletable-element" : ""}`}
             onClick={(event) => {
               if (devMode !== "delete") return;
               event.preventDefault();
