@@ -6,7 +6,7 @@ interface CreditsModalProps {
     onClose: () => void;
 }
 
-const PEOPLE_KEYS = ['uriel', 'ori', 'jonathan', 'joachim', 'ido', 'dafna', 'daria'];
+const PEOPLE_KEYS = ['uriel', 'ori', 'jonathan', 'joachim', 'ido', 'dafna'];
 
 export function CreditsModal({ onClose }: CreditsModalProps) {
     const { t } = useLangs();

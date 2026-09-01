@@ -37,7 +37,7 @@ export interface RationalePoint {
   text: LocalizedText;
 }
 
-export const teamKeys = ["uriel", "ori", "jonathan", "joachim", "ido", "dafna", "daria"] as const;
+export const teamKeys = ["uriel", "ori", "jonathan", "joachim", "ido", "dafna"] as const;
 
 export const uiText = {
   brandTitle: {

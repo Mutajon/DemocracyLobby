@@ -9,7 +9,7 @@ interface AboutPageProps {
     onNavigate: (page: "source") => void;
 }
 
-const PEOPLE_KEYS = ['uriel', 'ori', 'jonathan', 'joachim', 'ido', 'dafna', 'daria'];
+const PEOPLE_KEYS = ['uriel', 'ori', 'jonathan', 'joachim', 'ido', 'dafna'];
 
 export function AboutPage({ onBack, onNavigate }: AboutPageProps) {
     const { t, dir } = useLangs();
